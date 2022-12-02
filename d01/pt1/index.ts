@@ -1,19 +1,20 @@
 import * as fs from 'fs';
 
 const inputFile = process.argv[2];
-const rawData: string = fs.readFileSync(inputFile || 'inputTest.txt', 'utf8');
-const data: string[] = rawData.split('\n\n');
-console.log(data);
+const rawData: string = fs.readFileSync(inputFile || 'input.txt', 'utf8');
+const data: string[] = rawData.split('\r\n\r\n');
 
-const summed = data.map(elf => {
-  const calories = elf.split('\n');
-  let sum = 0;
-  for (let i = 0; i < calories.length; i++) {
-    sum += +calories[i];
+var highestElf = 0
+
+for (let elf of data) {
+
+  var compareElf = 0
+  var splitElf = elf.split('\r\n')
+  for (let food of splitElf) {
+    var newFood = parseInt(food)
+    compareElf += newFood
   }
-  
-  return sum;
-
-});
-
-console.log(Math.max(...summed));
+  if (compareElf > highestElf) {
+    highestElf = compareElf
+  }
+}
