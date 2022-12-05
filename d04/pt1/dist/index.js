@@ -34,7 +34,6 @@ data.forEach(item => {
     console.log(splitItem);
     var itemOne = splitItem[0].split('-');
     var itemTwo = splitItem[1].split('-');
-    console.log(itemOne);
     console.log('Comparing: ' + parseInt(itemOne[0]) + ' > ' + parseInt(itemTwo[0]) + ' and ' + parseInt(itemOne[1]) + ' > ' + parseInt(itemTwo[1]));
     if (parseInt(itemOne[0]) <= parseInt(itemTwo[0]) && parseInt(itemOne[1]) >= parseInt(itemTwo[1])) {
         console.log('passed');
