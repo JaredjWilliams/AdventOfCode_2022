@@ -2,7 +2,7 @@ if [ -d ../pt2 ]
 then
   echo "pt2 already exists."
   return 1
-fi
+figit 
 
 git add .
 git commit -m "Finish $FOLDER_NAME - pt1"
