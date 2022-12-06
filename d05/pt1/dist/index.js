@@ -39,13 +39,6 @@ chart.forEach(cha => {
     newChart.push(cha.split('|'));
 });
 console.log(newDirections);
-// data.replace('move', '|').replace('from', '|').replace('to', '|').replaceAll(' ', '').split('|')
-// for(let i = 0; i < data.length; i++) {
-//     var newData = data[i].replace('move', '|').replace('from', '|').replace('to', '|').replaceAll(' ', '').split('|')
-//     console.log(newData[0])
-//     console.log(newData[1])
-//     console.log(newData[2])
-// }
 for (let i = 0; i < newDirections.length; i++) {
     var length = parseInt(newDirections[i][1]);
     console.log('length: ' + length);
@@ -60,10 +53,4 @@ for (let i = 0; i < newDirections.length; i++) {
     }
 }
 console.log(newChart);
-// var str: string = "Infinitbility";
-// let char: string = str.substring(str.length - 1);
-// console.log(char)
-// console.log(str)
-// // Output
-// // 'y'
 //# sourceMappingURL=index.js.map
