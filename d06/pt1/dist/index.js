@@ -25,6 +25,14 @@ var __importStar = (this && this.__importStar) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const fs = __importStar(require("fs"));
 const inputFile = process.argv[2];
-const rawData = fs.readFileSync(inputFile || 'inputTest.txt', 'utf8');
-const data = rawData.split('\n');
+const data = fs.readFileSync('input.txt', 'utf8');
+console.log(data);
+for (let i = 0; i < data.length - 1; i++) {
+    var readString = new Set(data.slice(i, i + 14));
+    // console.log(readString.size)
+    if (readString.size === 14) {
+        // console.log('success ' + (i + 14) )
+        break;
+    }
+}
 //# sourceMappingURL=index.js.map
