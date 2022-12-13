@@ -57,29 +57,23 @@ var targetDirectory;
 var directoryHx = [];
 for (let i = 0; i < data.length; i++) {
     var command = data[i];
-    // console.log('wokring with: ' + command)
     if (command === '$ cd /') {
         executeMainRoot(i);
     }
     if (command.includes('cd') && command !== '$ cd ..' && !parseInt(command[0]) && command[0] !== 'd' && command !== '$ cd /') {
         var splitCommand = command.split(' ');
         var commandName = splitCommand[2];
-        // console.log('Command name: ' + commandName)
         for (let j = currentDirectory.directories.length - 1; j >= 0; j--) {
-            // console.log('testing: ' + currentDirectory.directories[j].name + ' with ' + commandName)
             if (commandName === currentDirectory.directories[j].name) {
                 targetDirectory = currentDirectory.directories[j];
-                // console.log('target dir: ' + JSON.stringify(targetDirectory))
             }
         }
         changeDirectory(currentDirectory);
     }
     if (command.includes('dir')) {
-        // console.log('Creating dir')
         createDirectory(command, i);
     }
     if (command === '$ cd ..') {
-        // console.log('Moving back')
         changeBackDirectory();
     }
     if (parseInt(command[0])) {
@@ -90,17 +84,12 @@ function createDirectory(command, id) {
     var splitCommand = command.split(' ');
     var name = splitCommand[1];
     currentDirectory.directories.push(new Directory(id, name, 0, [], []));
-    // console.log(currentDirectory)
 }
 function changeDirectory(cDirectory) {
     for (let directory of cDirectory.directories) {
-        // console.log('comparing: ' + JSON.stringify(directory.id) + ' vs ' + JSON.stringify(targetDirectory.id))
-        // console.log('target dir: ' + JSON.stringify(targetDirectory))
         if (directory.id === targetDirectory.id) {
-            // console.log('Passed: ' + JSON.stringify(directory.id) + ' vs ' + JSON.stringify(targetDirectory.id))
             currentDirectory = targetDirectory;
             directoryHx.push(currentDirectory);
-            // console.log('Current directory changed to: ' + JSON.stringify(currentDirectory))
             break;
         }
         else {
@@ -144,108 +133,4 @@ for (let size of sizes) {
 }
 console.log('Combined value: ' + combinedValue);
 console.log(mainRoot[0].directories);
-/*
-var directory: Directory[] = []
-var dirSizes = []
-var parentDirectoryID = 0
-
-
-for (let i = 0; i < data.length; i++) {
-    var command = data[i]
-    console.log('Current command: ' + command)
-    if (command === '$ cd /') {
-        console.log('Executing main root')
-        executeMainRoot(i)
-    }
-    if (command.includes('cd') && command !== '$ cd ..' && !parseInt(command[0]) && command[0] !== 'd') {
-        console.log('Executing CD')
-        console.log('Could be parent dir: ' + i)
-        executeCD(command, i)
-    }
-    if (command.includes('dir')) {
-        console.log('Executing Dir')
-        addDirectory(command, i)
-    }
-    if (parseInt(command[0])) {
-        console.log('Executing AddFile')
-        addFile(command)
-    }
-}
-
-for (let i = 0; i < directory.length; i++) {
-    mySet.add(directory[i].parentDirectory)
-}
-
-for (let i = directory.length - 1; i > 0; i--) {
-    console.log('Current Directory: ' + JSON.stringify(directory[i]))
-    var targetIndex = directory.findIndex((dir: Directory) => dir.name === directory[i].parentDirectory)
-    console.log('New Target Directory: ' + JSON.stringify(directory[targetIndex]))
-    directory[targetIndex].size += directory[i].size
-    console.log('Target directory changed: ' + JSON.stringify(directory[targetIndex]))
-    console.log('  ')
-}
-var totalSize = 0
-for (let i = 0; i < directory.length; i++) {
-    var targetDirectory = directory[i];
-    if(targetDirectory.size <= 100000) {
-        totalSize += targetDirectory.size
-        console.log('Directory: ' + JSON.stringify(targetDirectory))
-        console.log('Total size: ' + totalSize)
-    }
-}
-
-function FindSize(currentDirectory: Directory) {
-    var total = currentDirectory.size
-    for (let dir in currentDirectory.directories)
-}
-
-
-
-mySet.forEach((name) => {
-    var directorySize = 0
-    for (let i = 0; i < directory.length; i++) {
-        if (name === directory[i].parentDirectory) {
-            directorySize += directory[i].size
-        }
-    }
-})
-
-
-function executeMainRoot(index: number) {
-    directory.push(new Directory(index, '/', 0, [], [], 0))
-}
-
-function addDirectory(command: string, index: number) {
-    var splitCommand = command.split(' ')
-    var name = splitCommand[1]
-    directory.push(new Directory(index, name, 0, [], [], parentDirectoryID))
-    console.log(directory)
-}
-
-function executeCD(command: string, index: number) {
-    var splitCommand = command.split(' ')
-    var name = splitCommand[2]
-    console.log(name)
-    
-    var directoryIndex = directory.findIndex((d : Directory) => d.id === index)
-    parentDirectory = index
-    console.log('Parent Index: ' + parentDirectory)
-
-}
-
-function addFile(command: string) {
-    var splitCommand = command.split(' ')
-    var fileName = splitCommand[1]
-    var fileSize = parseInt(splitCommand[0])
-    directory[parentDirectory].size += fileSize
-    directory[parentDirectory].files.push(new File(fileName, fileSize))
-    console.log(directory[parentDirectory].files)
-
-}
-
-
-
-
-console.log(directory)
-*/
 //# sourceMappingURL=index.js.map

@@ -34,23 +34,33 @@ const compareArray = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k',
     'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J',
     'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X',
     'Y', 'Z'];
-for (let item of data) {
-    var substringOne = item.substring(0, item.length / 2);
-    var substringTwo = item.substring(item.length / 2, item.length);
+for (let rucksack of data) {
+    var compartmentOne = rucksack.substring(0, rucksack.length / 2);
+    var compartmentTwo = rucksack.substring(rucksack.length / 2, rucksack.length);
     var access = true;
-    for (let char of substringOne) {
-        console.log('comparing ' + char + ' to ' + substringTwo);
-        if (substringTwo.includes(char)) {
-            console.log('found');
+    for (let char of compartmentOne) {
+        if (compartmentTwo.includes(char)) {
+            console.log('found: ' + char);
             for (let i = 0; i < compareArray.length; i++) {
+                console.log('comparing: ' + char + ' and ' + compareArray[i]);
                 if (compareArray[i].includes(char) && access === true) {
                     var newIndex = i + 1;
                     totalValue += newIndex;
+                    console.log('Total points: ' + totalValue);
                     access = false;
-                    console.log('adding ' + char + ' value of ' + newIndex + '. The new value is ' + totalValue);
                 }
             }
         }
     }
 }
+/**
+ * Goal: To find the duplicate characters in each rucksack and add their point
+ *      count together.
+ *
+ * 1. I created an array of the alphabet because I knew I could use the character index
+ *      as its value.
+ * 2. I used a generic for loop to iterate through the data because i didnt need any
+ *      specific control at this point.
+ * 2.
+ */ 
 //# sourceMappingURL=index.js.map

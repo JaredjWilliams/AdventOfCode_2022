@@ -28,20 +28,18 @@ const inputFile = process.argv[2];
 const rawData = fs.readFileSync(inputFile || 'input.txt', 'utf8');
 const data = rawData.split('\r\n\r\n');
 var highestElf = 0;
+console.log(data);
 for (let elf of data) {
     var compareElf = 0;
     var splitElf = elf.split('\r\n');
-    console.log('current elf: ' + splitElf);
+    //
     for (let food of splitElf) {
         var newFood = parseInt(food);
-        console.log('current food: ' + newFood);
         compareElf += newFood;
-        console.log('compare elf: ' + compareElf);
     }
     if (compareElf > highestElf) {
         highestElf = compareElf;
-        console.log('highest elf: ' + highestElf);
     }
 }
-console.log('The highest elf is: ' + highestElf);
+console.log(highestElf);
 //# sourceMappingURL=index.js.map

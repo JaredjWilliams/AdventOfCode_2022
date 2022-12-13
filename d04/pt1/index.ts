@@ -4,27 +4,31 @@ const inputFile = process.argv[2];
 const rawData: string = fs.readFileSync('input.txt', 'utf8');
 const data: string[] = rawData.split('\r\n');
 
-console.log(data[0].split(','))
 
 var totalValue = 0
-data.forEach(item => {
-   var splitItem = item.split(',')
-   console.log(splitItem)
-   var itemOne = splitItem[0].split('-')
+data.forEach(assignments => {
+   var splitAssignments = assignments.split(',') //#1
+   console.log(splitAssignments)
+   var assignmentOne = splitAssignments[0].split('-')
 
-   var itemTwo = splitItem[1].split('-')
-   console.log('Comparing: ' + parseInt(itemOne[0]) + ' > ' + parseInt(itemTwo[0]) + ' and ' + parseInt(itemOne[1]) + ' > ' + parseInt(itemTwo[1]))
-   if (parseInt(itemOne[0]) <= parseInt(itemTwo[0]) && parseInt(itemOne[1]) >= parseInt(itemTwo[1])) {
-    console.log('passed')
-    totalValue += 1
-    console.log(totalValue)
-   } else if (parseInt(itemOne[0]) >= parseInt(itemTwo[0]) && parseInt(itemOne[1]) <= parseInt(itemTwo[1])) {
-    console.log('passed inversely')
-    totalValue += 1
-    console.log(totalValue)
-   } else {
-    console.log('failed')
+   var assignmentTwo = splitAssignments[1].split('-')
+   if (parseInt(assignmentOne[0]) <= parseInt(assignmentTwo[0]) && parseInt(assignmentOne[1]) >= parseInt(assignmentTwo[1])) { //#2
+      totalValue += 1
+      console.log(totalValue)
+   } else if (parseInt(assignmentOne[0]) >= parseInt(assignmentTwo[0]) && parseInt(assignmentOne[1]) <= parseInt(assignmentTwo[1])) {
+      totalValue += 1
+      console.log(totalValue)
    }
 })
 
 console.log(totalValue)
+
+/**
+ * Goal: Find how many groups where one assignments values encapsulate another.
+ * 
+ * 1. Split assignments into [ '27-55', '28-48' ] to access each assignment idividually
+ * 2. created an if statement that checked if the first encapsulated the second. And then checked if
+ *    the second encapsulated the first.
+ * 
+ * 
+ */

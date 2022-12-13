@@ -50,4 +50,9 @@ data.forEach(item => {
     }
 });
 console.log(totalValue);
+console.log(data[0].split(','));
+/**
+ * Goal:
+ *
+ */ 
 //# sourceMappingURL=index.js.map

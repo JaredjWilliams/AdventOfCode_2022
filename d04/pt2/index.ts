@@ -7,26 +7,26 @@ const data: string[] = rawData.split('\r\n');
 console.log(data[0].split(','))
 
 var totalValue = 0
-data.forEach(item => {
-   var splitItem = item.split(',')
-   console.log(splitItem)
-   var itemOne = splitItem[0].split('-')
+data.forEach(assignments => {
+   var splitAssignments = assignments.split(',')
+   console.log(splitAssignments)
+   var assignmentOne = splitAssignments[0].split('-')
 
-   var itemTwo = splitItem[1].split('-')
-   console.log('Comparing: ' + parseInt(itemOne[0]) + ' & ' + parseInt(itemTwo[1]) + ' and ' + parseInt(itemOne[1]) + ' & ' + parseInt(itemTwo[0]))
-   if (parseInt(itemOne[0]) >= parseInt(itemTwo[0]) && parseInt(itemOne[0]) <= parseInt(itemTwo[1])) {
+   var assignmentTwo = splitAssignments[1].split('-')
+   console.log('Comparing: ' + parseInt(assignmentOne[0]) + ' & ' + parseInt(assignmentTwo[1]) + ' and ' + parseInt(assignmentOne[1]) + ' & ' + parseInt(assignmentTwo[0]))
+   if (parseInt(assignmentOne[0]) >= parseInt(assignmentTwo[0]) && parseInt(assignmentOne[0]) <= parseInt(assignmentTwo[1])) {
     console.log('passed if statement 1')
     totalValue += 1
     console.log(totalValue)
-   } else if (parseInt(itemOne[1]) >= parseInt(itemTwo[0]) && parseInt(itemOne[1]) <= parseInt(itemTwo[1])) {
+   } else if (parseInt(assignmentOne[1]) >= parseInt(assignmentTwo[0]) && parseInt(assignmentOne[1]) <= parseInt(assignmentTwo[1])) {
     console.log('passed if statement 2')
     totalValue += 1
     console.log(totalValue)
-   } else if (parseInt(itemTwo[0]) >= parseInt(itemOne[0]) && parseInt(itemTwo[0]) <= parseInt(itemOne[1])) {
+   } else if (parseInt(assignmentTwo[0]) >= parseInt(assignmentOne[0]) && parseInt(assignmentTwo[0]) <= parseInt(assignmentOne[1])) {
       console.log('passed if statement 3')
       totalValue += 1
       console.log(totalValue)
-   } else if (parseInt(itemTwo[1]) >= parseInt(itemOne[0]) && parseInt(itemTwo[1]) <= parseInt(itemOne[1])) {
+   } else if (parseInt(assignmentTwo[1]) >= parseInt(assignmentOne[0]) && parseInt(assignmentTwo[1]) <= parseInt(assignmentOne[1])) {
       console.log('passed if statement 4')
       totalValue += 1
       console.log(totalValue)
@@ -36,3 +36,11 @@ data.forEach(item => {
 })
 
 console.log(totalValue)
+
+/**
+ * Goal: Find how many times there is any overlap of assignments.
+ * 
+ * 1. The code is the same as pt1 but the if statements are different.
+ *    They check to see if the first and second assigement numbers fall inside the range of the second assignment.
+ *    If they do it passes and total value is incremented by 1. 
+ */

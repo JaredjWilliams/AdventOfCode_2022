@@ -35,9 +35,7 @@ for (let i = 0; i < newDirections.length - 1; i++) {
             newChart[to].push(ele)
         })
         for (let j = 0; j < length; j++) {
-        
             newChart[from].pop()
-    
         }
     }
 }

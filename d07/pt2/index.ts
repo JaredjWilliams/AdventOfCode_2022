@@ -111,7 +111,6 @@ function findSize(rDirectory: Directory) {
         totalSize = totalSize + findSize(directory)
     }
     sizes.push(totalSize)
-    console.log(rDirectory.name + ' has ' + totalSize)
     return totalSize
 }
 findSize(mainRoot[0])
@@ -122,5 +121,34 @@ for (let size of sizes) {
         combinedValue += size
     }
 }
-console.log('Combined value: ' + combinedValue)
-console.log(mainRoot[0].directories)
+var freeSpace = 70000000 - sizes[sizes.length - 1]
+var spaceNeeded = 30000000 - freeSpace
+console.log('Space needed: ' + spaceNeeded) //1609574
+
+var deleteDirectory = sizes[sizes.length - 1]
+for (let directorySize of sizes) {
+    console.log('Seeing if: ' + directorySize + ' >= ' + spaceNeeded + ' && ' + directorySize + ' < ' + deleteDirectory)
+    if (directorySize >= spaceNeeded && directorySize < deleteDirectory) {
+        deleteDirectory = directorySize
+        console.log('Current lowest: ' + deleteDirectory)
+    } else {
+        console.log('Final lowest: ' + deleteDirectory)
+    }
+}
+// function findDirectory(rDirectory: Directory) {
+//     var cDirectoy;
+//     for (let directory of rDirectory.directories) {
+//         console.log('Comparing: ' + directory.size + ' vs ' + cDirectoy.size)
+//         if (directory.size >= spaceNeeded && directory.size < cDirectoy.size) {
+//             cDirectoy = directory
+//             console.log('Current lowest: ' + cDirectoy)
+//         } else {
+//             findDirectory(directory)
+//         }
+//     }
+
+    
+// }
+
+
+

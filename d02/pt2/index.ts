@@ -9,29 +9,32 @@ console.log(data)
 
 var totalPoints = 0
 
-for (let item of data) {
-    console.log('Testing: ' + item)
-    if (item.includes('Z')) {
+for (let round of data) {
+    if (round.includes('Z')) {
         totalPoints += 6
-        console.log('current total: ' + totalPoints)
-    } else if (item.includes('Y')) {
+    } else if (round.includes('Y')) {
         totalPoints += 3
-        console.log('current total: ' + totalPoints)
     } 
 }
 
-for (let item of data) {
-    console.log('Testing: ' + item)
-    if (item.includes('A Z') || item.includes('B Y') || item.includes('C X')) {
+for (let round of data) {
+    if (round.includes('A Z') || round.includes('B Y') || round.includes('C X')) {
         totalPoints += 2
-        console.log('current total: ' + totalPoints)
-    } else if (item.includes('C Z') || item.includes('A Y') || item.includes('B X')) {
+    } else if (round.includes('C Z') || round.includes('A Y') || round.includes('B X')) {
         totalPoints += 1
-        console.log('current total: ' + totalPoints)
-    } else if (item.includes('B Z') || item.includes('C Y') || item.includes('A X')) {
+    } else if (round.includes('B Z') || round.includes('C Y') || round.includes('A X')) {
         totalPoints += 3
-        console.log('current total: ' + totalPoints)
     }
 }
 
 console.log('total points: ' + totalPoints)
+
+/*
+
+1. I used the string method 'includes' because it iterates through the string to see if any of the
+    match the argument. This cuts out the need to habe another for loop to iterate through each 
+    character.
+2. In the second loop i used an if statement to find all the possible ways an element could be used.
+    For instance A, Z means the opponent chose rock and Z means you won. So paper is the element chosen.
+    The same  is true for B, Y && C, X.
+*/
