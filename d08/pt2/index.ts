@@ -9,13 +9,17 @@ const forest: string[] = rawData.split('\r\n');
 // console.log(forest)
 
 function findVisibleTrees() {
-    var visibleTrees = 0;
-    var notVisibleTrees = 0;
+    var scenicScores = []
     for (let i = 1; i < forest.length - 1; i++) {
         // console.log(forest[i])
         var currentLine = i
         // console.log('CurrentLine: ' + currentLine)
         for (let j = 1; j < forest[currentLine].length - 1; j++) {
+            var visibleTreesTop = 0
+            var visibleTreesRight = 0
+            var visibleTreesLeft = 0
+            var visibleTreesBottom = 0
+
             // console.log('finding tree: ' + forest[currentLine][j])
             var lineTree = j
             var currentTree = false
@@ -27,10 +31,10 @@ function findVisibleTrees() {
                     var compareTree = forest[currentLine][k+1]
                     if (indexTree > compareTree) {
                         // console.log(indexTree + ' passed ' + 'it is greater than ' + compareTree)
-                        currentTree = true
+                        visibleTreesRight++
                     } else {
                         // console.log(indexTree + ' failed ' + 'it is less than or equal to ' + compareTree)
-                        currentTree = false
+                        visibleTreesRight++
                         break
                     }
                 }
@@ -43,10 +47,10 @@ function findVisibleTrees() {
                     var compareTree = forest[currentLine][n-1]
                     if (indexTree > compareTree) {
                         // console.log(indexTree + ' passed ' + 'it is greater than ' + compareTree)
-                        currentTree = true
+                        visibleTreesLeft++
                     } else {
                         // console.log(indexTree + ' failed ' + 'it is less than or equal to ' + compareTree)
-                        currentTree = false
+                        visibleTreesLeft++
                         break
                     }
                 }
@@ -58,11 +62,11 @@ function findVisibleTrees() {
                     var indexTree = forest[currentLine][lineTree]
                     var compareTree = forest[m-1][lineTree]
                     if (indexTree > compareTree) {
-                        currentTree = true
+                        visibleTreesTop++
                         // console.log(indexTree + ' passed ' + 'it is greater than ' + compareTree)
                     } else {
                         // console.log(indexTree + ' failed ' + 'it is less than or equal to ' + compareTree)
-                        currentTree = false
+                        visibleTreesTop++
                         break
                     }
                 }
@@ -74,28 +78,36 @@ function findVisibleTrees() {
                     var indexTree = forest[currentLine][lineTree]
                     var compareTree = forest[p+1][lineTree]
                     if (indexTree > compareTree) {
-                        currentTree = true
+                        visibleTreesBottom++
                         // console.log(indexTree + ' passed ' + 'it is greater than ' + compareTree)
                     } else {
                         // console.log(indexTree + ' failed ' + 'it is less than or equal to ' + compareTree)
-                        currentTree = false
+                        visibleTreesBottom++
                         break
                     }
                 }
             }
-            if (currentTree) {
-                visibleTrees++
-            } else {
-                notVisibleTrees++
+            var totalScore = (visibleTreesRight * visibleTreesTop * visibleTreesLeft * visibleTreesBottom)
+            scenicScores.push(totalScore)
+            if (totalScore === 8) {
+                console.log('Visible right: ' + visibleTreesRight)
+                console.log('visible top: ' + visibleTreesTop)
+                console.log('visible left: ' + visibleTreesLeft)
+                console.log('visible bottom: ' + visibleTreesBottom)
             }
-        }
-        
+
+        } 
     }
-    visibleTrees = visibleTrees + (99 * 4) - 4
-    console.log('Forest length: ' + forest.length)
-    console.log('Forest width: ' + forest[0].length)
-    console.log('Visible Trees: ' + visibleTrees)
-    console.log('Not Visible Trees: ' + notVisibleTrees)
+    console.log(scenicScores)
+    var topScenicScore = Math.max(...scenicScores)
+    console.log(topScenicScore)
+    var tpScenicScore = 0
+    for (let score of scenicScores) {
+        if (score > tpScenicScore) {
+            tpScenicScore = score
+        }
+    }
+    console.log(tpScenicScore)
 }
 findVisibleTrees()
 
